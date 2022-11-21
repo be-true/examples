@@ -1,0 +1,14 @@
+{
+  "name": "ddd",
+  "version": "1.0.0",
+  "description": "Пример построения приложения с использованием DDD",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@be-true/server": "^0.2.1"
+  }
+}
