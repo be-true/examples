@@ -11,9 +11,61 @@ paginate: true
 
 ---
 
+
+# График Ганта
+
+## Введение в предметную область
+
+Картинка
+
+---
+
 #  Что такое DDD
 
-> DDD - domain driven design
+**DDD** - domain driven design
+
+Состоит из частей:
+- Стратегическое проектирование
+- Тактическое проектирование
+
+---
+# Стратегическое проектирование
+
+- Единый язык
+- Ограниченные контексты
+- Event Storming
+
+---
+
+# Тактическое проектирование
+
+Основные сущности:
+- Агрегат
+- Репозиторий
+- Сервис
+
+---
+
+# Список агрегатов
+
+- Элемент графика (работа)
+- Связи
+- ППР
+---
+
+# Диаграмма
+
+<div class="mermaid">
+sequenceDiagram
+    participant John
+    participant Alice
+    Alice->>John: Hello John, how are you?
+    John-->>Alice: Great!
+</div>
+
+---
+
+# Описание сценария
 
 ---
 
@@ -48,18 +100,26 @@ export const addGantItem = async (params, { repoTask, repoGant, repoPPR, transac
 
 ---
 
-# Диаграмма
+# Как написать агрегат
+---
+# Как написать репозиторий
 
-<div class="mermaid">
-sequenceDiagram
-    participant John
-    participant Alice
-    Alice->>John: Hello John, how are you?
-    John-->>Alice: Great!
-</div>
+---
+# Пример **Unit** теста
+
+```javascript
+```
 
 ---
 
+# Плюсы
+
+---
+
+# Минусы и оптимизации
+---
+
+# Вопросы?
 <!-- mermaid.js -->
 <script src="https://unpkg.com/mermaid@8.1.0/dist/mermaid.min.js"></script>
 <script>mermaid.initialize({startOnLoad:true});</script>
