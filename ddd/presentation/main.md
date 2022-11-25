@@ -105,7 +105,7 @@ export const addGantItem = async (params, { repoTask, repoGant, repoPPR, transac
 
 ```javascript
 
-class Gant {
+class Gant extends BaseAggregate {
     ...
     constructor(items, deps) {
         this.items = items;
@@ -134,27 +134,74 @@ class Gant {
 
 ```javascript
 
-class Gant {
+class Gant extends BaseAggregate {
     ...
 
-    changeTimeRangeForItem(plan_item_id, range) {
+    changePositionForItem(plan_item_id, position) {
         const item = this.mapItemIdToItem[plan_item_id];
         if (!item) throw new Error(`Гант не содержит ..."`);
-        if (range.start > range.end) throw new Error(`Начало интервала ...`);
+        if (position.start > position.end) throw new Error(`Начало интервала ...`);
 
-        if (item.start !== range.start || item.end !== range.end) {
-            item.start = range.start;
-            item.end = range.end;
-            this.changes.push({ action: 'update', item }); // (1)
-            this.calcPosition(); // (2)
+        if (item.start !== position.start || item.end !== position.end) {
+            item.start = position.start;
+            item.end = position.end;
+            this.addChange(item.plan_item_id, 'item', 'update', ['start', 'end']}); // (1)
+            this.calcPositions(); // (2)
         }
-    }
-
-    getChanges(params) {
-        return toBatch(this.changes, params.batch);
     }
 }
 ```
+
+---
+# Как написать агрегат. Расчет смещения
+
+
+```javascript
+
+class Gant extends BaseAggregate {
+    ...
+
+    calcPositions() {
+        for (const item of walkGant(this.items, this.deps)) {
+            const position = this.getNewPositionForItem(item);
+            this.changePositionForItem(position);
+        }
+    }
+    ...
+}
+```
+---
+# Как написать агрегат. Регистрация изменений
+
+
+```javascript
+
+class BaseAggregate {
+    ...
+    changes = new Map();
+
+    addChange(id, entity, action, params) {
+        if (this.changes.has(id)) {
+            this.changes.set(id, {
+                entity,
+                action,
+                params
+            })
+        } else {
+            // логика по объединению изменений
+        }
+    }
+
+    getChanges({ batch }) {
+        const changes = [];
+        for (const [id, { entity, action, params }] of Object.entries(this.changes)) {
+            changes.push({ entity, action, params })
+        }
+        return toBatch(changes, batch);
+    }
+}
+```
+
 ---
 # Как написать репозиторий
 
