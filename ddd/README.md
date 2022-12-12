@@ -1,5 +1,5 @@
-## Запуск команды
-curl -d {} -X POST http://localhost:3000/api/gant/dependencies/add
+# Экспорт презентации в html
 
-## Фронт
-http://localhost:3000
+```bash
+marp --html ddd/presentation/main.md
+```
