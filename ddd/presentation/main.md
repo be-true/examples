@@ -9,27 +9,60 @@ paginate: true
 
 Автор: `Шапошников Евгений`
 ЯП: `JavaScript`
+Компания: `lad24.ru`
 
 ---
 
 # Про что поговорим:
 
+- DDD трилемма
 - Что такое DDD
 - Примеры кода и реализаций
 - Проблемы DDD и их оптимизации
 
 ---
-![bg right w:90%](images/onion.png)
+
+# DDD трилемма
+
+![width:800](images/ddd_trilema.png)
+> Взято из доклада Владимира Хорикова "Domain-driven design: Самое важное"
+- CAP теорема - аналог, только для баз данных
+
+---
 #  Что такое DDD?
 
 **DDD** - domain driven design
 Domain - предметная область
 
+![bg right w:90%](images/onion.png)
+
+---
+
+# Стратегическое проектирование (управление проектом)
+
+- Разделение на ограниченные контексты
+- Формирование единого языка для контекста
+- Выделение сценариев
+
+`Event Storming` - инструмент для совместного достижения этих пунктов
+
+
+---
+
+# Тактическое проектирование (ООП)
+
+Основные сущности:
+- `Агрегат`
+    - Часть модели с бизнес логикой
+- `Репозиторий`
+    - Слой работы с базой данных
+- `Сервис`
+    - Склеивающий код, в котором взаимодействуют агрегаты
 ---
 
 # График Ганта
 
-## Введение в предметную область
+## Введение в предметную область (ограниченный контекст)
 
 ---
 
@@ -44,6 +77,7 @@ Domain - предметная область
 - Заголовок, описание...
 - Время: `начала`, `конца`
 - Ресурсы: `объем`, сколько выполнено
+- Список `связей` к предыдущему элементу
 - Исполнители
 - ...
 
@@ -57,12 +91,14 @@ Domain - предметная область
 
 #  Единый язык
 
-| RUS                                      | ENG       |
-|------------------------------------------|-----------|
-| График                                   | plan      |
-| Элемент графика                          | plan_item |
-| Зависимость между элементами (стрелочки) | deps      |
-| ППР                                      | ppr       |
+| RUS                                      | ENG             |
+|------------------------------------------|-----------------|
+| График                                   | plan            |
+| Элемент графика (работа)                 | plan_item       |
+| Зависимость между элементами (стрелочки) | deps            |
+| ППР                                      | ppr             |
+| Начало выполнения работы                 | start_time      |
+| Окончание выполнения работы              | end_time        |
 
 ---
 
@@ -73,7 +109,7 @@ Domain - предметная область
 - описание  работы
 
 Результат:
-- Информация о работе `i2` должна изменить
+- Информация о работе `i2` должна измениться
 - Зависимые от `i2` работы должны сдвинуться
 - ППР измененных задач должны быть пересчитаны
 
@@ -82,46 +118,46 @@ Domain - предметная область
 
 ![Гант](images/gant_after_change.png)
 
-
-
 ---
-# Стратегическое проектирование
 
-- Описали наш ограниченный контекст.
-    В нашем случае он один. Для разделения на контексты используется `Event Storming`
-- Сформировали единый язык для контекста
-- Выделили сценарии
-
+# Что мы сейчас сделали:
+- Описали ограниченный контекст
+- Выделили единый язык
+- Описали сценарий
 
 ---
 
-# Тактическое проектирование
+# Перейдем к тактической части DDD
 
-Основные сущности:
-- Агрегат
-- Репозиторий
-- Сервис
+
+## Список агрегатов
+
+- `Элемент графика` (работа)
+    - Все поля, которые можно редактировать в работе
+- `График Ганта` 
+    - Часть информации из работы, такие как `start_time`, `end_time` и `type`
+    - Список всех связей
+- `ППР`
+    - Распределение по дням для каждой работы
 
 ---
 
-# В коде
+# Сценарий в коде сервиса
 
 ```javascript
-export const addGantItem = async (params, { repoTask, repoGant, repoPPR, transaction }) => {
-    let gant, pprs;
-    const item = repoPlanItem.restoreOrFail(params.plan_item_id);
+export const changePositionGantItem = async (params, { repoTask, repoGant, repoPPR }) => {
+    const item = await repoPlanItem.restoreOrFail(params.plan_item_id);
     item.update(params);
     
+    let gant, pprs;
     if (item.hasChanges('time_range', 'dependencies')) {
         gant = await repoGant.restore(params.plan_id);
-        gant.addDependencies(item, params.dependencies)
-            .calcPositions()
+        gant.changePositionForItem(item.plan_item_id, item.getPosition());
 
         const changedItemsIds = gant.getChangedPositionsIds();
         pprs = await repoPPR.restoreByGantItems(changedItemsIds);
         for (const ppr of pprs) {
-            const change = gant.getChangeItemById(ppr.plan_item_id);
-            ppr.applyPositionChange(change);
+            ppr.applyPositionChange(gant.getChangeItemById(ppr.plan_item_id));
         }
     }
 
@@ -130,14 +166,6 @@ export const addGantItem = async (params, { repoTask, repoGant, repoPPR, transac
     await repoPPR.persist(pprs);
 }
 ```
-
----
-
-# Список агрегатов
-
-- Элемент графика (работа)
-- График Ганта
-- ППР
 
 ---
 
@@ -154,7 +182,7 @@ class Gant extends BaseAggregate {
         this.index();
     }
 
-    index() {
+    private index() {
         this.mapItemIdToItem = toMap(this.items, 'plan_item_id'); // (1)
         this.mapItemIdToSuccIds = toMapGroup(this.items, 'pred_id'); // (2)
     }
@@ -171,15 +199,23 @@ class Gant extends BaseAggregate {
     ...
 
     changePositionForItem(plan_item_id, position) {
+        if (this.setPositionForItem(plan_item_id, position)) {
+            this.calcPositions();
+        }
+    }
+
+    private setPositionForItem(plan_item_id, position) {
         const item = this.mapItemIdToItem[plan_item_id];
-        if (!item) throw new Error(`Гант не содержит ..."`);
-        if (position.start > position.end) throw new Error(`Начало интервала ...`);
+        if (!item) throw new Error(`Гант не содержит элемент с указанным ID`);
+        if (position.start > position.end) throw new Error(`Начало интервала не может быть ...`);
 
         if (item.start !== position.start || item.end !== position.end) {
             item.start = position.start;
             item.end = position.end;
-            this.addChange(item.plan_item_id, 'item', 'update', ['start', 'end']}); // (1)
-            this.calcPositions(); // (2)
+            this.addChange('item', item.plan_item_id, 'update', ['start', 'end']});
+            return true;
+        } else {
+            return false;
         }
     }
 }
@@ -194,10 +230,10 @@ class Gant extends BaseAggregate {
 class Gant extends BaseAggregate {
     ...
 
-    calcPositions() {
+    private calcPositions() {
         for (const item of walkGant(this.items, this.deps)) {
             const position = this.getNewPositionForItem(item);
-            this.changePositionForItem(position);
+            this.setPositionForItem(item.plan_item_id, position);
         }
     }
     ...
@@ -213,22 +249,35 @@ class BaseAggregate {
     ...
     changes = new Map();
 
-    addChange(id, entity, action, params) {
-        if (this.changes.has(id)) {
+    addChange(source, id, action, columns) {
+        if (!this.changes.has(id)) {
             this.changes.set(id, {
-                entity,
+                source,
                 action,
-                params
+                columns
             })
         } else {
             // логика по объединению изменений
         }
     }
+}
+```
 
-    getChanges({ batch }) {
+---
+# Как написать агрегат. Получение изменений
+
+
+```javascript
+
+class BaseAggregate {
+    ...
+    changes = new Map();
+
+    getChanges(batch = 100) {
         const changes = [];
-        for (const [id, { entity, action, params }] of Object.entries(this.changes)) {
-            changes.push({ entity, action, params })
+        for (const [id, { source, action }] of Object.entries(this.changes)) {
+            const params = this.getChangedParams(id);
+            changes.push({ source, action, params })
         }
         return toBatch(changes, batch);
     }
@@ -265,7 +314,7 @@ class GantRepository {
 # Как написать репозиторий
 
 - Чтение выполняется напрямую из базы
-- Можно срезать углы и выполнить бизнес логику через SQL
+- Можно срезать углы и выполнить бизнес логику через `SQL`
 
 ```javascript
 
@@ -301,7 +350,9 @@ describe('GantItem.calcPosition() несколько связей', () => {
     i3.calcPosition();
 
     // Проверяем результат
-    expect(i3.getTimeRange()).toEqual({ start_time: 5, end_time: 10 });
+    const change = i3.getChange();
+    expect(change.action).toEqual('update');
+    expect(change.params).toEqual({ start_time: 5, end_time: 10 });
   });
 });
 ```
@@ -359,14 +410,14 @@ export const ensureItem = (data: Partial<EnsureItemOptions>): GantItem {
 - ППР
 ```javascript
 plan = await repoPlan.restore(params.plan_id);
-plan.addItem(item, params.dependencies)
-    .calc()
+plan.changePositionForItem(item, params.dependencies);
 ```
 
 `Решение:` 
 1. Грузить только нужные поля
 2. Разбивать большие агрегаты на маленькие исходя из `use case`-ов
 3. Сохранять через итератор порциями, т. к. SQL занимает много памяти
+4. Выбирать другие грани из DDD трилеммы
 
 ---
 
@@ -400,22 +451,23 @@ class Gant extends BaseAggregate {
 
 ```javascript
 class Gant extends BaseAggregate {
-    async calcPositions() {
-        for await (const item of walk(this.items, 100)) {
-            item.calcPosition();
+    private async calcPositions() {
+        for await (const item of walkGant(this.items, this.deps, 100)) {
+            const position = this.getNewPositionForItem(item);
+            this.setPositionForItem(item.plan_item_id, position);
         }
     }
 }
 ```
 
-`Решение:` Обрабатывать частями и отпускать `event loop` . Или делать расчет в фоне
+`Решение:` Обрабатывать частями и отпускать `event loop` или в фоне
 
 ```javascript
-async function walk() {
+async function walkGant(items, deps, batchCount) {
     ...
     if (count++ >= batchCount) {
         count = 0;
-        await new Promise((res, rej) => setImmediate(res))
+        await new Promise((res, rej) => setImmediate(res)) // 0 задержка
     }
 }
 ```
@@ -429,7 +481,7 @@ async function walk() {
 
 1. **Регистрация изменений** и получение их списком
 
-    `Решение:` реализовать в базовом классе `BaseAggregate` или библиотеке
+    `Решение:` реализовать в базовом классе `BaseAggregate` или библиотека
 
 2. **Сохранение** потока событий в базе данных
 
@@ -440,11 +492,10 @@ async function walk() {
 
 # Минус 5. Рейсы
 
-После загрузки агрегата его можно изменить другой процесс
+После загрузки агрегата его может изменить другой процесс
 ```javascript
 const gant = await repoGant.restore(params.plan_id);
-gant.addItem(item, params.dependencies);
-await gant.calc();
+await gant.changePositionForItem(item.plan_item_id, item.getPosition());
 await repoGant.persist(gant);
 ```
 `Решение:`

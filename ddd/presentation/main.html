@@ -13,44 +13,87 @@
 <h1>DDD на практическом примере:</h1>
 <h2>Расчет диаграммы Ганта</h2>
 <p>Автор: <code>Шапошников Евгений</code><br />
-ЯП: <code>JavaScript</code></p>
+ЯП: <code>JavaScript</code><br />
+Компания: <code>lad24.ru</code></p>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="2" data-paginate="true" data-marpit-pagination="2" data-marpit-pagination-total="32" style="--paginate:true;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="2" data-paginate="true" data-marpit-pagination="2" data-marpit-pagination-total="35" style="--paginate:true;">
 <h1>Про что поговорим:</h1>
 <ul>
+<li>DDD трилемма</li>
 <li>Что такое DDD</li>
 <li>Примеры кода и реализаций</li>
 <li>Проблемы DDD и их оптимизации</li>
 </ul>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-marpit-pagination="3" data-marpit-pagination-total="32" style="--paginate:true;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;images/onion.png&quot;);background-size:90% auto;"></figure></div></section></foreignObject><foreignObject width="50%" height="720"><section id="3" data-paginate="true" data-marpit-pagination="3" data-marpit-pagination-total="32" style="--paginate:true;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="3" data-paginate="true" data-marpit-pagination="3" data-marpit-pagination-total="35" style="--paginate:true;">
+<h1>DDD трилемма</h1>
+<p><img src="images/ddd_trilema.png" alt="" style="width:800px;" /></p>
+<blockquote>
+<p>Взято из доклада Владимира Хорикова &quot;Domain-driven design: Самое важное&quot;</p>
+</blockquote>
+<ul>
+<li>CAP теорема - аналог, только для баз данных</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-marpit-pagination="4" data-marpit-pagination-total="35" style="--paginate:true;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;images/onion.png&quot;);background-size:90% auto;"></figure></div></section></foreignObject><foreignObject width="50%" height="720"><section id="4" data-paginate="true" data-marpit-pagination="4" data-marpit-pagination-total="35" style="--paginate:true;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
 <h1>Что такое DDD?</h1>
 <p><strong>DDD</strong> - domain driven design<br />
 Domain - предметная область</p>
 </section>
-</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-paginate="true" data-marpit-pagination="3" data-marpit-pagination-total="32" style="" data-marpit-advanced-background="pseudo" data-marpit-advanced-background-split="right"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="4" data-paginate="true" data-marpit-pagination="4" data-marpit-pagination-total="32" style="--paginate:true;">
-<h1>График Ганта</h1>
-<h2>Введение в предметную область</h2>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-paginate="true" data-marpit-pagination="4" data-marpit-pagination-total="35" style="" data-marpit-advanced-background="pseudo" data-marpit-advanced-background-split="right"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-paginate="true" data-marpit-pagination="5" data-marpit-pagination-total="35" style="--paginate:true;">
+<h1>Стратегическое проектирование (управление проектом)</h1>
+<ul>
+<li>Разделение на ограниченные контексты</li>
+<li>Формирование единого языка для контекста</li>
+<li>Выделение сценариев</li>
+</ul>
+<p><code>Event Storming</code> - инструмент для совместного достижения этих пунктов</p>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-paginate="true" data-marpit-pagination="5" data-marpit-pagination-total="32" style="--paginate:true;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-paginate="true" data-marpit-pagination="6" data-marpit-pagination-total="35" style="--paginate:true;">
+<h1>Тактическое проектирование (ООП)</h1>
+<p>Основные сущности:</p>
+<ul>
+<li><code>Агрегат</code>
+<ul>
+<li>Часть модели с бизнес логикой</li>
+</ul>
+</li>
+<li><code>Репозиторий</code>
+<ul>
+<li>Слой работы с базой данных</li>
+</ul>
+</li>
+<li><code>Сервис</code>
+<ul>
+<li>Склеивающий код, в котором взаимодействуют агрегаты</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-paginate="true" data-marpit-pagination="7" data-marpit-pagination-total="35" style="--paginate:true;">
+<h1>График Ганта</h1>
+<h2>Введение в предметную область (ограниченный контекст)</h2>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-paginate="true" data-marpit-pagination="8" data-marpit-pagination-total="35" style="--paginate:true;">
 <p><img src="images/gant.png" alt="Гант" /></p>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-paginate="true" data-marpit-pagination="6" data-marpit-pagination-total="32" style="--paginate:true;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-paginate="true" data-marpit-pagination="9" data-marpit-pagination-total="35" style="--paginate:true;">
 <h1>Работа</h1>
 <h2>хранит данные:</h2>
 <ul>
 <li>Заголовок, описание...</li>
 <li>Время: <code>начала</code>, <code>конца</code></li>
 <li>Ресурсы: <code>объем</code>, сколько выполнено</li>
+<li>Список <code>связей</code> к предыдущему элементу</li>
 <li>Исполнители</li>
 <li>...</li>
 </ul>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-paginate="true" data-marpit-pagination="7" data-marpit-pagination-total="32" style="--paginate:true;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-paginate="true" data-marpit-pagination="10" data-marpit-pagination-total="35" style="--paginate:true;">
 <h1>ППР (посуточное планирование работ)</h1>
 <p><img src="images/ppr.png" alt="ППР" style="width:800px;" /></p>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-paginate="true" data-marpit-pagination="8" data-marpit-pagination-total="32" style="--paginate:true;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-paginate="true" data-marpit-pagination="11" data-marpit-pagination-total="35" style="--paginate:true;">
 <h1>Единый язык</h1>
 <table>
 <thead>
@@ -65,7 +108,7 @@ Domain - предметная область</p>
 <td>plan</td>
 </tr>
 <tr>
-<td>Элемент графика</td>
+<td>Элемент графика (работа)</td>
 <td>plan_item</td>
 </tr>
 <tr>
@@ -76,10 +119,18 @@ Domain - предметная область</p>
 <td>ППР</td>
 <td>ppr</td>
 </tr>
+<tr>
+<td>Начало выполнения работы</td>
+<td>start_time</td>
+</tr>
+<tr>
+<td>Окончание выполнения работы</td>
+<td>end_time</td>
+</tr>
 </tbody>
 </table>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-paginate="true" data-marpit-pagination="9" data-marpit-pagination-total="32" style="--paginate:true;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-paginate="true" data-marpit-pagination="12" data-marpit-pagination-total="35" style="--paginate:true;">
 <h1>Сценарий:</h1>
 <p>Пользователь изменил:</p>
 <ul>
@@ -88,49 +139,59 @@ Domain - предметная область</p>
 </ul>
 <p>Результат:</p>
 <ul>
-<li>Информация о работе <code>i2</code> должна изменить</li>
+<li>Информация о работе <code>i2</code> должна измениться</li>
 <li>Зависимые от <code>i2</code> работы должны сдвинуться</li>
 <li>ППР измененных задач должны быть пересчитаны</li>
 </ul>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-paginate="true" data-marpit-pagination="10" data-marpit-pagination-total="32" style="--paginate:true;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-paginate="true" data-marpit-pagination="13" data-marpit-pagination-total="35" style="--paginate:true;">
 <p><img src="images/gant_after_change.png" alt="Гант" /></p>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-paginate="true" data-marpit-pagination="11" data-marpit-pagination-total="32" style="--paginate:true;">
-<h1>Стратегическое проектирование</h1>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="14" data-paginate="true" data-marpit-pagination="14" data-marpit-pagination-total="35" style="--paginate:true;">
+<h1>Что мы сейчас сделали:</h1>
 <ul>
-<li>Описали наш ограниченный контекст.<br />
-В нашем случае он один. Для разделения на контексты используется <code>Event Storming</code></li>
-<li>Сформировали единый язык для контекста</li>
-<li>Выделили сценарии</li>
+<li>Описали ограниченный контекст</li>
+<li>Выделили единый язык</li>
+<li>Описали сценарий</li>
 </ul>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-paginate="true" data-marpit-pagination="12" data-marpit-pagination-total="32" style="--paginate:true;">
-<h1>Тактическое проектирование</h1>
-<p>Основные сущности:</p>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-paginate="true" data-marpit-pagination="15" data-marpit-pagination-total="35" style="--paginate:true;">
+<h1>Перейдем к тактической части DDD</h1>
+<h2>Список агрегатов</h2>
 <ul>
-<li>Агрегат</li>
-<li>Репозиторий</li>
-<li>Сервис</li>
+<li><code>Элемент графика</code> (работа)
+<ul>
+<li>Все поля, которые можно редактировать в работе</li>
+</ul>
+</li>
+<li><code>График Ганта</code>
+<ul>
+<li>Часть информации из работы, такие как <code>start_time</code>, <code>end_time</code> и <code>type</code></li>
+<li>Список всех связей</li>
+</ul>
+</li>
+<li><code>ППР</code>
+<ul>
+<li>Распределение по дням для каждой работы</li>
+</ul>
+</li>
 </ul>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-paginate="true" data-marpit-pagination="13" data-marpit-pagination-total="32" style="--paginate:true;">
-<h1>В коде</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">addGantItem</span> = <span class="hljs-keyword">async</span> (<span class="hljs-params">params, { repoTask, repoGant, repoPPR, transaction }</span>) =&gt; {
-    <span class="hljs-keyword">let</span> gant, pprs;
-    <span class="hljs-keyword">const</span> item = repoPlanItem.<span class="hljs-title function_">restoreOrFail</span>(params.<span class="hljs-property">plan_item_id</span>);
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-paginate="true" data-marpit-pagination="16" data-marpit-pagination-total="35" style="--paginate:true;">
+<h1>Сценарий в коде сервиса</h1>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">changePositionGantItem</span> = <span class="hljs-keyword">async</span> (<span class="hljs-params">params, { repoTask, repoGant, repoPPR }</span>) =&gt; {
+    <span class="hljs-keyword">const</span> item = <span class="hljs-keyword">await</span> repoPlanItem.<span class="hljs-title function_">restoreOrFail</span>(params.<span class="hljs-property">plan_item_id</span>);
     item.<span class="hljs-title function_">update</span>(params);
     
+    <span class="hljs-keyword">let</span> gant, pprs;
     <span class="hljs-keyword">if</span> (item.<span class="hljs-title function_">hasChanges</span>(<span class="hljs-string">&#x27;time_range&#x27;</span>, <span class="hljs-string">&#x27;dependencies&#x27;</span>)) {
         gant = <span class="hljs-keyword">await</span> repoGant.<span class="hljs-title function_">restore</span>(params.<span class="hljs-property">plan_id</span>);
-        gant.<span class="hljs-title function_">addDependencies</span>(item, params.<span class="hljs-property">dependencies</span>)
-            .<span class="hljs-title function_">calcPositions</span>()
+        gant.<span class="hljs-title function_">changePositionForItem</span>(item.<span class="hljs-property">plan_item_id</span>, item.<span class="hljs-title function_">getPosition</span>());
 
         <span class="hljs-keyword">const</span> changedItemsIds = gant.<span class="hljs-title function_">getChangedPositionsIds</span>();
         pprs = <span class="hljs-keyword">await</span> repoPPR.<span class="hljs-title function_">restoreByGantItems</span>(changedItemsIds);
         <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> ppr <span class="hljs-keyword">of</span> pprs) {
-            <span class="hljs-keyword">const</span> change = gant.<span class="hljs-title function_">getChangeItemById</span>(ppr.<span class="hljs-property">plan_item_id</span>);
-            ppr.<span class="hljs-title function_">applyPositionChange</span>(change);
+            ppr.<span class="hljs-title function_">applyPositionChange</span>(gant.<span class="hljs-title function_">getChangeItemById</span>(ppr.<span class="hljs-property">plan_item_id</span>));
         }
     }
 
@@ -140,15 +201,7 @@ Domain - предметная область</p>
 }
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="14" data-paginate="true" data-marpit-pagination="14" data-marpit-pagination-total="32" style="--paginate:true;">
-<h1>Список агрегатов</h1>
-<ul>
-<li>Элемент графика (работа)</li>
-<li>График Ганта</li>
-<li>ППР</li>
-</ul>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-paginate="true" data-marpit-pagination="15" data-marpit-pagination-total="32" style="--paginate:true;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-paginate="true" data-marpit-pagination="17" data-marpit-pagination-total="35" style="--paginate:true;">
 <h1>Как написать агрегат. Подготовка</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-javascript">
 <span class="hljs-keyword">class</span> <span class="hljs-title class_">Gant</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">BaseAggregate</span> {
@@ -159,80 +212,98 @@ Domain - предметная область</p>
         <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">index</span>();
     }
 
-    <span class="hljs-title function_">index</span>(<span class="hljs-params"></span>) {
+    private <span class="hljs-title function_">index</span>(<span class="hljs-params"></span>) {
         <span class="hljs-variable language_">this</span>.<span class="hljs-property">mapItemIdToItem</span> = <span class="hljs-title function_">toMap</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">items</span>, <span class="hljs-string">&#x27;plan_item_id&#x27;</span>); <span class="hljs-comment">// (1)</span>
         <span class="hljs-variable language_">this</span>.<span class="hljs-property">mapItemIdToSuccIds</span> = <span class="hljs-title function_">toMapGroup</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">items</span>, <span class="hljs-string">&#x27;pred_id&#x27;</span>); <span class="hljs-comment">// (2)</span>
     }
 }
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-paginate="true" data-marpit-pagination="16" data-marpit-pagination-total="32" style="--paginate:true;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="18" data-paginate="true" data-marpit-pagination="18" data-marpit-pagination-total="35" style="--paginate:true;">
 <h1>Как написать агрегат. Бизнес логика</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-javascript">
 <span class="hljs-keyword">class</span> <span class="hljs-title class_">Gant</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">BaseAggregate</span> {
     ...
 
     <span class="hljs-title function_">changePositionForItem</span>(<span class="hljs-params">plan_item_id, position</span>) {
+        <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setPositionForItem</span>(plan_item_id, position)) {
+            <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">calcPositions</span>();
+        }
+    }
+
+    private <span class="hljs-title function_">setPositionForItem</span>(<span class="hljs-params">plan_item_id, position</span>) {
         <span class="hljs-keyword">const</span> item = <span class="hljs-variable language_">this</span>.<span class="hljs-property">mapItemIdToItem</span>[plan_item_id];
-        <span class="hljs-keyword">if</span> (!item) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">`Гант не содержит ...&quot;`</span>);
-        <span class="hljs-keyword">if</span> (position.<span class="hljs-property">start</span> &gt; position.<span class="hljs-property">end</span>) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">`Начало интервала ...`</span>);
+        <span class="hljs-keyword">if</span> (!item) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">`Гант не содержит элемент с указанным ID`</span>);
+        <span class="hljs-keyword">if</span> (position.<span class="hljs-property">start</span> &gt; position.<span class="hljs-property">end</span>) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">`Начало интервала не может быть ...`</span>);
 
         <span class="hljs-keyword">if</span> (item.<span class="hljs-property">start</span> !== position.<span class="hljs-property">start</span> || item.<span class="hljs-property">end</span> !== position.<span class="hljs-property">end</span>) {
             item.<span class="hljs-property">start</span> = position.<span class="hljs-property">start</span>;
             item.<span class="hljs-property">end</span> = position.<span class="hljs-property">end</span>;
-            <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">addChange</span>(item.<span class="hljs-property">plan_item_id</span>, <span class="hljs-string">&#x27;item&#x27;</span>, <span class="hljs-string">&#x27;update&#x27;</span>, [<span class="hljs-string">&#x27;start&#x27;</span>, <span class="hljs-string">&#x27;end&#x27;</span>]}); <span class="hljs-comment">// (1)</span>
-            <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">calcPositions</span>(); <span class="hljs-comment">// (2)</span>
+            <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">addChange</span>(<span class="hljs-string">&#x27;item&#x27;</span>, item.<span class="hljs-property">plan_item_id</span>, <span class="hljs-string">&#x27;update&#x27;</span>, [<span class="hljs-string">&#x27;start&#x27;</span>, <span class="hljs-string">&#x27;end&#x27;</span>]});
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
         }
     }
 }
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-paginate="true" data-marpit-pagination="17" data-marpit-pagination-total="32" style="--paginate:true;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="19" data-paginate="true" data-marpit-pagination="19" data-marpit-pagination-total="35" style="--paginate:true;">
 <h1>Как написать агрегат. Расчет смещения</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-javascript">
 <span class="hljs-keyword">class</span> <span class="hljs-title class_">Gant</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">BaseAggregate</span> {
     ...
 
-    <span class="hljs-title function_">calcPositions</span>(<span class="hljs-params"></span>) {
+    private <span class="hljs-title function_">calcPositions</span>(<span class="hljs-params"></span>) {
         <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> item <span class="hljs-keyword">of</span> <span class="hljs-title function_">walkGant</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">items</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">deps</span>)) {
             <span class="hljs-keyword">const</span> position = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">getNewPositionForItem</span>(item);
-            <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">changePositionForItem</span>(position);
+            <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setPositionForItem</span>(item.<span class="hljs-property">plan_item_id</span>, position);
         }
     }
     ...
 }
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="18" data-paginate="true" data-marpit-pagination="18" data-marpit-pagination-total="32" style="--paginate:true;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="20" data-paginate="true" data-marpit-pagination="20" data-marpit-pagination-total="35" style="--paginate:true;">
 <h1>Как написать агрегат. Регистрация изменений</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-javascript">
 <span class="hljs-keyword">class</span> <span class="hljs-title class_">BaseAggregate</span> {
     ...
     changes = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>();
 
-    <span class="hljs-title function_">addChange</span>(<span class="hljs-params">id, entity, action, params</span>) {
-        <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">changes</span>.<span class="hljs-title function_">has</span>(id)) {
+    <span class="hljs-title function_">addChange</span>(<span class="hljs-params">source, id, action, columns</span>) {
+        <span class="hljs-keyword">if</span> (!<span class="hljs-variable language_">this</span>.<span class="hljs-property">changes</span>.<span class="hljs-title function_">has</span>(id)) {
             <span class="hljs-variable language_">this</span>.<span class="hljs-property">changes</span>.<span class="hljs-title function_">set</span>(id, {
-                entity,
+                source,
                 action,
-                params
+                columns
             })
         } <span class="hljs-keyword">else</span> {
             <span class="hljs-comment">// логика по объединению изменений</span>
         }
     }
+}
+</code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="21" data-paginate="true" data-marpit-pagination="21" data-marpit-pagination-total="35" style="--paginate:true;">
+<h1>Как написать агрегат. Получение изменений</h1>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-javascript">
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">BaseAggregate</span> {
+    ...
+    changes = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>();
 
-    <span class="hljs-title function_">getChanges</span>(<span class="hljs-params">{ batch }</span>) {
+    <span class="hljs-title function_">getChanges</span>(<span class="hljs-params">batch = <span class="hljs-number">100</span></span>) {
         <span class="hljs-keyword">const</span> changes = [];
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> [id, { entity, action, params }] <span class="hljs-keyword">of</span> <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">entries</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">changes</span>)) {
-            changes.<span class="hljs-title function_">push</span>({ entity, action, params })
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> [id, { source, action }] <span class="hljs-keyword">of</span> <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">entries</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">changes</span>)) {
+            <span class="hljs-keyword">const</span> params = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">getChangedParams</span>(id);
+            changes.<span class="hljs-title function_">push</span>({ source, action, params })
         }
         <span class="hljs-keyword">return</span> <span class="hljs-title function_">toBatch</span>(changes, batch);
     }
 }
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="19" data-paginate="true" data-marpit-pagination="19" data-marpit-pagination-total="32" style="--paginate:true;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="22" data-paginate="true" data-marpit-pagination="22" data-marpit-pagination-total="35" style="--paginate:true;">
 <h1>Как написать репозиторий</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-javascript">
 <span class="hljs-keyword">class</span> <span class="hljs-title class_">GantRepository</span> {
@@ -255,11 +326,11 @@ Domain - предметная область</p>
 }
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="20" data-paginate="true" data-marpit-pagination="20" data-marpit-pagination-total="32" style="--paginate:true;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="23" data-paginate="true" data-marpit-pagination="23" data-marpit-pagination-total="35" style="--paginate:true;">
 <h1>Как написать репозиторий</h1>
 <ul>
 <li>Чтение выполняется напрямую из базы</li>
-<li>Можно срезать углы и выполнить бизнес логику через SQL</li>
+<li>Можно срезать углы и выполнить бизнес логику через <code>SQL</code></li>
 </ul>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-javascript">
 <span class="hljs-keyword">class</span> <span class="hljs-title class_">GantRepository</span> {
@@ -272,11 +343,11 @@ Domain - предметная область</p>
 }
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="21" data-paginate="true" data-marpit-pagination="21" data-marpit-pagination-total="32" style="--paginate:true;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="24" data-paginate="true" data-marpit-pagination="24" data-marpit-pagination-total="35" style="--paginate:true;">
 <h1>Пример <strong>Unit</strong> теста. Тест кейс</h1>
 <p><img src="images/unit_test.png" alt="" style="width:700px;" /></p>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="22" data-paginate="true" data-marpit-pagination="22" data-marpit-pagination-total="32" style="--paginate:true;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25" data-paginate="true" data-marpit-pagination="25" data-marpit-pagination-total="35" style="--paginate:true;">
 <h1>Пример <strong>Unit</strong> теста. Реализация</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-javascript"><span class="hljs-title function_">describe</span>(<span class="hljs-string">&#x27;GantItem.calcPosition() несколько связей&#x27;</span>, <span class="hljs-function">() =&gt;</span> {
   <span class="hljs-title function_">it</span>(<span class="hljs-string">&#x27;Для i3 берем окончание от i1, так как она дает &quot;худшее&quot; время&#x27;</span>, <span class="hljs-keyword">async</span> () =&gt; {
@@ -291,12 +362,14 @@ Domain - предметная область</p>
     i3.<span class="hljs-title function_">calcPosition</span>();
 
     <span class="hljs-comment">// Проверяем результат</span>
-    <span class="hljs-title function_">expect</span>(i3.<span class="hljs-title function_">getTimeRange</span>()).<span class="hljs-title function_">toEqual</span>({ <span class="hljs-attr">start_time</span>: <span class="hljs-number">5</span>, <span class="hljs-attr">end_time</span>: <span class="hljs-number">10</span> });
+    <span class="hljs-keyword">const</span> change = i3.<span class="hljs-title function_">getChange</span>();
+    <span class="hljs-title function_">expect</span>(change.<span class="hljs-property">action</span>).<span class="hljs-title function_">toEqual</span>(<span class="hljs-string">&#x27;update&#x27;</span>);
+    <span class="hljs-title function_">expect</span>(change.<span class="hljs-property">params</span>).<span class="hljs-title function_">toEqual</span>({ <span class="hljs-attr">start_time</span>: <span class="hljs-number">5</span>, <span class="hljs-attr">end_time</span>: <span class="hljs-number">10</span> });
   });
 });
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="23" data-paginate="true" data-marpit-pagination="23" data-marpit-pagination-total="32" style="--paginate:true;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="26" data-paginate="true" data-marpit-pagination="26" data-marpit-pagination-total="35" style="--paginate:true;">
 <h1>Пример <strong>Unit</strong> теста. Функция <code>ensureItem</code></h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> ensureItem = (<span class="hljs-attr">data</span>: <span class="hljs-title class_">Partial</span>&lt;<span class="hljs-title class_">EnsureItemOptions</span>&gt;): <span class="hljs-title class_">GantItem</span> {
   <span class="hljs-keyword">const</span> defaultParams = {
@@ -315,14 +388,14 @@ Domain - предметная область</p>
 };
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="24" data-paginate="true" data-marpit-pagination="24" data-marpit-pagination-total="32" style="--paginate:true;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="27" data-paginate="true" data-marpit-pagination="27" data-marpit-pagination-total="35" style="--paginate:true;">
 <h1>Плюсы для тестирования</h1>
 <p><img src="./images/piramid_of_tests.jpeg" alt="Пирамида тестов" /></p>
 <ul>
 <li>? Минус - нужно править много тестов вместе с кодом</li>
 </ul>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25" data-paginate="true" data-marpit-pagination="25" data-marpit-pagination-total="32" style="--paginate:true;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="28" data-paginate="true" data-marpit-pagination="28" data-marpit-pagination-total="35" style="--paginate:true;">
 <h1>Плюсы в разработке</h1>
 <ul>
 <li>Возможность решать более сложные задачи</li>
@@ -333,10 +406,10 @@ Domain - предметная область</p>
 <li>EventBased архитектура</li>
 </ul>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="26" data-paginate="true" data-marpit-pagination="26" data-marpit-pagination-total="32" style="--paginate:true;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="29" data-paginate="true" data-marpit-pagination="29" data-marpit-pagination-total="35" style="--paginate:true;">
 <h1>Минусы и оптимизации</h1>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="27" data-paginate="true" data-marpit-pagination="27" data-marpit-pagination-total="32" style="--paginate:true;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="30" data-paginate="true" data-marpit-pagination="30" data-marpit-pagination-total="35" style="--paginate:true;">
 <h1>Минус 1. Избыточное использование памяти</h1>
 <p>Большой агрегат в котором описана логика работы:</p>
 <ul>
@@ -345,17 +418,17 @@ Domain - предметная область</p>
 <li>ППР</li>
 </ul>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-javascript">plan = <span class="hljs-keyword">await</span> repoPlan.<span class="hljs-title function_">restore</span>(params.<span class="hljs-property">plan_id</span>);
-plan.<span class="hljs-title function_">addItem</span>(item, params.<span class="hljs-property">dependencies</span>)
-    .<span class="hljs-title function_">calc</span>()
+plan.<span class="hljs-title function_">changePositionForItem</span>(item, params.<span class="hljs-property">dependencies</span>);
 </code></pre>
 <p><code>Решение:</code></p>
 <ol>
 <li>Грузить только нужные поля</li>
 <li>Разбивать большие агрегаты на маленькие исходя из <code>use case</code>-ов</li>
 <li>Сохранять через итератор порциями, т. к. SQL занимает много памяти</li>
+<li>Выбирать другие грани из DDD трилеммы</li>
 </ol>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="28" data-paginate="true" data-marpit-pagination="28" data-marpit-pagination-total="32" style="--paginate:true;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="31" data-paginate="true" data-marpit-pagination="31" data-marpit-pagination-total="35" style="--paginate:true;">
 <h1>Минус 2. Нагрузка на процессор</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Gant</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">BaseAggregate</span> {
     <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) {
@@ -377,33 +450,34 @@ plan.<span class="hljs-title function_">addItem</span>(item, params.<span class=
 <li>Связывание компонентов по ссылкам</li>
 </ol>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="29" data-paginate="true" data-marpit-pagination="29" data-marpit-pagination-total="32" style="--paginate:true;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="32" data-paginate="true" data-marpit-pagination="32" data-marpit-pagination-total="35" style="--paginate:true;">
 <h1>Минус 3. Блокировка event loop-а</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Gant</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">BaseAggregate</span> {
-    <span class="hljs-keyword">async</span> <span class="hljs-title function_">calcPositions</span>(<span class="hljs-params"></span>) {
-        <span class="hljs-keyword">for</span> <span class="hljs-keyword">await</span> (<span class="hljs-keyword">const</span> item <span class="hljs-keyword">of</span> <span class="hljs-title function_">walk</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">items</span>, <span class="hljs-number">100</span>)) {
-            item.<span class="hljs-title function_">calcPosition</span>();
+    private <span class="hljs-keyword">async</span> <span class="hljs-title function_">calcPositions</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-keyword">for</span> <span class="hljs-keyword">await</span> (<span class="hljs-keyword">const</span> item <span class="hljs-keyword">of</span> <span class="hljs-title function_">walkGant</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">items</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">deps</span>, <span class="hljs-number">100</span>)) {
+            <span class="hljs-keyword">const</span> position = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">getNewPositionForItem</span>(item);
+            <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setPositionForItem</span>(item.<span class="hljs-property">plan_item_id</span>, position);
         }
     }
 }
 </code></pre>
-<p><code>Решение:</code> Обрабатывать частями и отпускать <code>event loop</code> . Или делать расчет в фоне</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-javascript"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">walk</span>(<span class="hljs-params"></span>) {
+<p><code>Решение:</code> Обрабатывать частями и отпускать <code>event loop</code> или в фоне</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-javascript"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">walkGant</span>(<span class="hljs-params">items, deps, batchCount</span>) {
     ...
     <span class="hljs-keyword">if</span> (count++ &gt;= batchCount) {
         count = <span class="hljs-number">0</span>;
-        <span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">res, rej</span>) =&gt;</span> <span class="hljs-title function_">setImmediate</span>(res))
+        <span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">res, rej</span>) =&gt;</span> <span class="hljs-title function_">setImmediate</span>(res)) <span class="hljs-comment">// 0 задержка</span>
     }
 }
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="30" data-paginate="true" data-marpit-pagination="30" data-marpit-pagination-total="32" style="--paginate:true;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="33" data-paginate="true" data-marpit-pagination="33" data-marpit-pagination-total="35" style="--paginate:true;">
 <h1>Минус 4. Трудоемкость</h1>
 <p>В чем основная задача при таком подходе:</p>
 <ol>
 <li>
 <p><strong>Регистрация изменений</strong> и получение их списком</p>
-<p><code>Решение:</code> реализовать в базовом классе <code>BaseAggregate</code> или библиотеке</p>
+<p><code>Решение:</code> реализовать в базовом классе <code>BaseAggregate</code> или библиотека</p>
 </li>
 <li>
 <p><strong>Сохранение</strong> потока событий в базе данных</p>
@@ -411,12 +485,11 @@ plan.<span class="hljs-title function_">addItem</span>(item, params.<span class=
 </li>
 </ol>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="31" data-paginate="true" data-marpit-pagination="31" data-marpit-pagination-total="32" style="--paginate:true;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="34" data-paginate="true" data-marpit-pagination="34" data-marpit-pagination-total="35" style="--paginate:true;">
 <h1>Минус 5. Рейсы</h1>
-<p>После загрузки агрегата его можно изменить другой процесс</p>
+<p>После загрузки агрегата его может изменить другой процесс</p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-javascript"><span class="hljs-keyword">const</span> gant = <span class="hljs-keyword">await</span> repoGant.<span class="hljs-title function_">restore</span>(params.<span class="hljs-property">plan_id</span>);
-gant.<span class="hljs-title function_">addItem</span>(item, params.<span class="hljs-property">dependencies</span>);
-<span class="hljs-keyword">await</span> gant.<span class="hljs-title function_">calc</span>();
+<span class="hljs-keyword">await</span> gant.<span class="hljs-title function_">changePositionForItem</span>(item.<span class="hljs-property">plan_item_id</span>, item.<span class="hljs-title function_">getPosition</span>());
 <span class="hljs-keyword">await</span> repoGant.<span class="hljs-title function_">persist</span>(gant);
 </code></pre>
 <p><code>Решение:</code></p>
@@ -425,7 +498,7 @@ gant.<span class="hljs-title function_">addItem</span>(item, params.<span class=
 <li>Жесткая блокировка по сессии пользователя</li>
 </ol>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="32" data-paginate="true" data-marpit-pagination="32" data-marpit-pagination-total="32" style="--paginate:true;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="35" data-paginate="true" data-marpit-pagination="35" data-marpit-pagination-total="35" style="--paginate:true;">
 <h1>Вопросы?</h1>
 </section>
 <script>!function(){"use strict";const t={h1:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"1"},style:"display: block; font-size: 2em; margin-block-start: 0.67em; margin-block-end: 0.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h2:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"2"},style:"display: block; font-size: 1.5em; margin-block-start: 0.83em; margin-block-end: 0.83em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h3:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"3"},style:"display: block; font-size: 1.17em; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h4:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"4"},style:"display: block; margin-block-start: 1.33em; margin-block-end: 1.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h5:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"5"},style:"display: block; font-size: 0.83em; margin-block-start: 1.67em; margin-block-end: 1.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h6:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"6"},style:"display: block; font-size: 0.67em; margin-block-start: 2.33em; margin-block-end: 2.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},span:{proto:()=>HTMLSpanElement},pre:{proto:()=>HTMLElement,style:"display: block; font-family: monospace; white-space: pre; margin: 1em 0; --marp-auto-scaling-white-space: pre;"}},e="data-marp-auto-scaling-wrapper",i="data-marp-auto-scaling-svg",n="data-marp-auto-scaling-container";class s extends HTMLElement{constructor(){super(),this.svgPreserveAspectRatio="xMinYMid meet";const t=t=>([e])=>{const{width:i,height:n}=e.contentRect;this[t]={width:i,height:n},this.updateSVGRect()};this.attachShadow({mode:"open"}),this.containerObserver=new ResizeObserver(t("containerSize")),this.wrapperObserver=new ResizeObserver(((...e)=>{t("wrapperSize")(...e),this.flushSvgDisplay()}))}static get observedAttributes(){return["data-downscale-only"]}connectedCallback(){var t,s,o,r,a;this.shadowRoot.innerHTML=`\n<style>\n  svg[${i}] { display: block; width: 100%; height: auto; vertical-align: top; }\n  span[${n}] { display: table; white-space: var(--marp-auto-scaling-white-space, nowrap); width: max-content; }\n</style>\n<div ${e}>\n  <svg part="svg" ${i}>\n    <foreignObject><span ${n}><slot></slot></span></foreignObject>\n  </svg>\n</div>\n    `.split(/\n\s*/).join(""),this.wrapper=null!==(t=this.shadowRoot.querySelector(`div[${e}]`))&&void 0!==t?t:void 0;const l=this.svg;this.svg=null!==(o=null===(s=this.wrapper)||void 0===s?void 0:s.querySelector(`svg[${i}]`))&&void 0!==o?o:void 0,this.svg!==l&&(this.svgComputedStyle=this.svg?window.getComputedStyle(this.svg):void 0),this.container=null!==(a=null===(r=this.svg)||void 0===r?void 0:r.querySelector(`span[${n}]`))&&void 0!==a?a:void 0,this.observe()}disconnectedCallback(){this.svg=void 0,this.svgComputedStyle=void 0,this.wrapper=void 0,this.container=void 0,this.observe()}attributeChangedCallback(){this.observe()}flushSvgDisplay(){const{svg:t}=this;t&&(t.style.display="inline",requestAnimationFrame((()=>{t.style.display=""})))}observe(){this.containerObserver.disconnect(),this.wrapperObserver.disconnect(),this.wrapper&&this.wrapperObserver.observe(this.wrapper),this.container&&this.containerObserver.observe(this.container),this.svgComputedStyle&&this.observeSVGStyle(this.svgComputedStyle)}observeSVGStyle(t){const e=()=>{const i=(()=>{const e=t.getPropertyValue("--preserve-aspect-ratio");if(e)return e.trim();return`x${(({textAlign:t,direction:e})=>{if(t.endsWith("left"))return"Min";if(t.endsWith("right"))return"Max";if("start"===t||"end"===t){let i="rtl"===e;return"end"===t&&(i=!i),i?"Max":"Min"}return"Mid"})(t)}YMid meet`})();i!==this.svgPreserveAspectRatio&&(this.svgPreserveAspectRatio=i,this.updateSVGRect()),t===this.svgComputedStyle&&requestAnimationFrame(e)};e()}updateSVGRect(){var t,e,i,n,s,o,r;let a=Math.ceil(null!==(e=null===(t=this.containerSize)||void 0===t?void 0:t.width)&&void 0!==e?e:0);const l=Math.ceil(null!==(n=null===(i=this.containerSize)||void 0===i?void 0:i.height)&&void 0!==n?n:0);void 0!==this.dataset.downscaleOnly&&(a=Math.max(a,null!==(o=null===(s=this.wrapperSize)||void 0===s?void 0:s.width)&&void 0!==o?o:0));const c=null===(r=this.svg)||void 0===r?void 0:r.querySelector(":scope > foreignObject");if(null==c||c.setAttribute("width",`${a}`),null==c||c.setAttribute("height",`${l}`),this.svg&&(this.svg.setAttribute("viewBox",`0 0 ${a} ${l}`),this.svg.setAttribute("preserveAspectRatio",this.svgPreserveAspectRatio),this.svg.style.height=a<=0||l<=0?"0":""),this.container){const t=this.svgPreserveAspectRatio.toLowerCase();this.container.style.marginLeft=t.startsWith("xmid")||t.startsWith("xmax")?"auto":"0",this.container.style.marginRight=t.startsWith("xmi")?"auto":"0"}}}const o=(t,{attrs:e={},style:i})=>class extends t{constructor(...t){super(...t);for(const[t,i]of Object.entries(e))this.hasAttribute(t)||this.setAttribute(t,i);this.attachShadow({mode:"open"})}static get observedAttributes(){return["data-auto-scaling"]}connectedCallback(){this._update()}attributeChangedCallback(){this._update()}_update(){const t=i?`<style>:host { ${i} }</style>`:"";let e="<slot></slot>";const{autoScaling:n}=this.dataset;if(void 0!==n){e=`<marp-auto-scaling exportparts="svg:auto-scaling" ${"downscale-only"===n?"data-downscale-only":""}>${e}</marp-auto-scaling>`}this.shadowRoot.innerHTML=t+e}};let r;const a=Symbol(),l="marpitSVGPolyfill:setZoomFactor,",c=Symbol();let d,p;function h(t){const e="object"==typeof t&&t.target||document,i="object"==typeof t?t.zoom:t;window[c]||(Object.defineProperty(window,c,{configurable:!0,value:!0}),window.addEventListener("message",(({data:t,origin:e})=>{if(e===window.origin)try{if(t&&"string"==typeof t&&t.startsWith(l)){const[,e]=t.split(","),i=Number.parseFloat(e);Number.isNaN(i)||(p=i)}}catch(t){console.error(t)}})));let n=!1;Array.from(e.querySelectorAll("svg[data-marpit-svg]"),(t=>{var e,s,o,r;t.style.transform||(t.style.transform="translateZ(0)");const a=i||p||t.currentScale||1;d!==a&&(d=a,n=a);const l=t.getBoundingClientRect(),{length:c}=t.children;for(let i=0;i<c;i+=1){const n=t.children[i];if(n.getScreenCTM){const t=n.getScreenCTM();if(t){const i=null!==(s=null===(e=n.x)||void 0===e?void 0:e.baseVal.value)&&void 0!==s?s:0,c=null!==(r=null===(o=n.y)||void 0===o?void 0:o.baseVal.value)&&void 0!==r?r:0,d=n.children.length;for(let e=0;e<d;e+=1){const s=n.children[e];if("SECTION"===s.tagName){const{style:e}=s;e.transformOrigin||(e.transformOrigin=`${-i}px ${-c}px`),e.transform=`scale(${a}) matrix(${t.a}, ${t.b}, ${t.c}, ${t.d}, ${t.e-l.left}, ${t.f-l.top}) translateZ(0.0001px)`;break}}}}}})),!1!==n&&Array.from(e.querySelectorAll("iframe"),(({contentWindow:t})=>{null==t||t.postMessage(`${l}${n}`,"null"===window.origin?"*":window.origin)}))}function g({once:t=!1,target:e=document}={}){const i="Apple Computer, Inc."===navigator.vendor?[h]:[];let n=!t;const s=()=>{for(const t of i)t({target:e});n&&window.requestAnimationFrame(s)};return s(),()=>{n=!1}}d=1,p=void 0;const m=Symbol(),v=(e=document)=>{if("undefined"==typeof window)throw new Error("Marp Core's browser script is valid only in browser context.");if(((e=document)=>{const i=window[a];i||customElements.define("marp-auto-scaling",s);for(const n of Object.keys(t)){const s=`marp-${n}`,a=t[n].proto();null!=r||(r=!!document.createElement("div",{is:"marp-auto-scaling"}).outerHTML.startsWith("<div is")),r&&a!==HTMLElement?i||customElements.define(s,o(a,{style:t[n].style}),{extends:n}):(i||customElements.define(s,o(HTMLElement,t[n])),e.querySelectorAll(`${n}[is="${s}"]`).forEach((t=>{t.outerHTML=t.outerHTML.replace(new RegExp(`^<${n}`,"i"),`<${s}`).replace(new RegExp(`</${n}>$`,"i"),`</${s}>`)})))}window[a]=!0})(e),e[m])return e[m];const i=g({target:e}),n=()=>{i(),delete e[m]},l=Object.assign(n,{cleanup:n,update:()=>v(e)});return Object.defineProperty(e,m,{configurable:!0,value:l}),l},u=document.currentScript;v(u?u.getRootNode():document)}();
