@@ -4,60 +4,14 @@ paginate: true
 ---
 <!-- _paginate: false -->
 
-# DDD на практическом примере:
+# DDD на практическом примере
 ## Расчет диаграммы Ганта
 
 Автор: `Шапошников Евгений`
-ЯП: `JavaScript`
 Компания: `lad24.ru`
-
----
-
-# Про что поговорим:
-
-- DDD трилемма
-- Что такое DDD
-- Примеры кода и реализаций
-- Проблемы DDD и их оптимизации
-
----
-
-# DDD трилемма
-
-![width:800](images/ddd_trilema.png)
-> Взято из доклада Владимира Хорикова "Domain-driven design: Самое важное"
-- CAP теорема - аналог, только для баз данных
-
----
-#  Что такое DDD?
-
-**DDD** - domain driven design
-Domain - предметная область
-
-![bg right w:90%](images/onion.png)
-
----
-
-# Стратегическое проектирование (управление проектом)
-
-- Разделение на ограниченные контексты
-- Формирование единого языка для контекста
-- Выделение сценариев
-
-`Event Storming` - инструмент для совместного достижения этих пунктов
+Стек: `node.js`
 
 
----
-
-# Тактическое проектирование (ООП)
-
-Основные сущности:
-- `Агрегат`
-    - Часть модели с бизнес логикой
-- `Репозиторий`
-    - Слой работы с базой данных
-- `Сервис`
-    - Склеивающий код, в котором взаимодействуют агрегаты
 ---
 
 # График Ганта
@@ -89,48 +43,37 @@ Domain - предметная область
 
 ---
 
-#  Единый язык
-
-| RUS                                      | ENG             |
-|------------------------------------------|-----------------|
-| График                                   | plan            |
-| Элемент графика (работа)                 | plan_item       |
-| Зависимость между элементами (стрелочки) | deps            |
-| ППР                                      | ppr             |
-| Начало выполнения работы                 | start_time      |
-| Окончание выполнения работы              | end_time        |
-
----
-
-# Сценарий:
-
-Пользователь изменил:
-- длительность элемента на графике `i2` 
-- описание  работы
-
-Результат:
-- Информация о работе `i2` должна измениться
-- Зависимые от `i2` работы должны сдвинуться
-- ППР измененных задач должны быть пересчитаны
-
-
----
-
 ![Гант](images/gant_after_change.png)
 
 ---
 
-# Что мы сейчас сделали:
-- Описали ограниченный контекст
-- Выделили единый язык
-- Описали сценарий
+# Выводы по задаче
+
+- Много бизнес логики
+- Много сайд эффектов
+- Как распределить работу?
+- Как сделать надежное приложение?
+- Как сделать его гибким для развития?
 
 ---
 
-# Перейдем к тактической части DDD
+#   Для решения мы выбрали DDD
 
+**DDD** - domain driven design
+Domain - предметная область
 
-## Список агрегатов
+# Тактическое проектирование (ООП)
+
+Основные сущности:
+- `Агрегат`
+    - Часть модели с бизнес логикой
+- `Репозиторий`
+    - Слой работы с базой данных
+- `Сервис`
+    - Склеивающий код, в котором взаимодействуют агрегаты
+---
+
+# Список агрегатов
 
 - `Элемент графика` (работа)
     - Все поля, которые можно редактировать в работе
@@ -140,9 +83,13 @@ Domain - предметная область
 - `ППР`
     - Распределение по дням для каждой работы
 
+# Репозитории
+
+- По репозиторию на агрегат
+
 ---
 
-# Сценарий в коде сервиса
+# Сервис для описанного сценария *
 
 ```javascript
 export const changePositionGantItem = async (params, { repoTask, repoGant, repoPPR }) => {
@@ -169,7 +116,197 @@ export const changePositionGantItem = async (params, { repoTask, repoGant, repoP
 
 ---
 
-# Как написать агрегат. Подготовка
+ # Что это нам дало
+
+- UseCase-ы читаются как текст
+- Параллельная разработка. 
+    - Сервис - сборочный чертеж
+    - Агрегаты и репозитории - детали которые пилит команда параллельно
+- Возможность решать более сложные задачи
+- Фреймворк и БД подождут
+- Контроль транзакций
+- EventBased архитектура
+
+---
+
+# Пример **Unit** тестирования **
+
+---
+
+# Тест кейс для Unit теста
+
+![width:700](images/unit_test.png)
+
+---
+# Реализация **Unit** теста
+
+```javascript
+describe('GantItem.calcPosition() несколько связей', () => {
+  it('Для i3 берем окончание от i1, так как она дает "худшее" время', async () => {
+    // Восстанавливаем состояние
+    const i1 = ensureItem({ id: 'i1', start_time: 0, end_time: 5});
+    const i2 = ensureItem({ id: 'i2', start_time: 0, end_time: 2});
+    const i3 = ensureItem({ id: 'i3', start_time: 0, end_time: 5});
+    i1.setDeps(i3, EDependencyType.FS);
+    i2.setDeps(i3, EDependencyType.FS);
+
+    // Выполняем целевое действие 
+    i3.calcPosition();
+
+    // Проверяем результат
+    const change = i3.getChange();
+    expect(change.action).toEqual('update');
+    expect(change.params).toEqual({ start_time: 5, end_time: 10 });
+  });
+});
+```
+
+---
+
+# Функция `ensureItem`
+
+```javascript
+export const ensureItem = (data: Partial<EnsureItemOptions>): GantItem {
+  const defaultParams = {
+    id: data.id ?? guId(),
+    parent_id: undefined,
+    start_time: new Date(),
+    end_time: new Date(),
+    type: EItemType.COMMON,
+  };
+  const params = {
+    ...defaultParams
+    ...data, 
+  };
+
+  return new GantItem(params);
+};
+```
+
+---
+
+# Плюсы для тестирования
+
+![Пирамида тестов](./images/piramid_of_tests.jpeg)
+
+---
+
+---
+
+# Стратегическое проектирование (управление проектом)
+
+- Разделение на ограниченные контексты
+- Формирование единого языка для контекста
+- Выделение сценариев
+
+`Event Storming` - инструмент для совместного достижения этих пунктов
+
+
+---
+
+#  Единый язык
+
+| RUS                                      | ENG             |
+|------------------------------------------|-----------------|
+| График                                   | plan            |
+| Элемент графика (работа)                 | plan_item       |
+| Зависимость между элементами (стрелочки) | deps            |
+| ППР                                      | ppr             |
+| Начало выполнения работы                 | start_time      |
+| Окончание выполнения работы              | end_time        |
+
+---
+
+# Сценарий:
+
+Пользователь изменил:
+- длительность элемента на графике `i2` 
+- описание  работы
+
+Результат:
+- Информация о работе `i2` должна измениться
+- Зависимые от `i2` работы должны сдвинуться
+- ППР измененных задач должны быть пересчитаны
+
+---
+
+# Вот теперь это DDD, до этого было ООП
+
+Сценарий из UseCase-а был переведен в код сервиса без искажений
+
+---
+
+# Реализация
+
+---
+
+# Как написать репозиторий?
+
+```javascript
+    const item = await repoPlanItem.restoreOrFail(params.plan_item_id);
+    // ...
+    const gant = await repoGant.restore(params.plan_id);
+    // ...
+    const pprs = await repoPPR.restoreByGantItems(changedItemsIds);
+    // ...
+    await repoTask.persist(task);
+    await repoGant.persist(gant);
+    await repoPPR.persist(pprs);
+```
+---
+
+# Пример репозитория
+
+```javascript
+
+class GantRepository {
+    ...
+    async restore(plan_id) {
+        const items = await this.findItemsByPlanId(plan_id);
+        const deps = await this.findDepsByPlanId(plan_id);
+        return new Gant(items, deps); // Инкапсуляция, изоляция (бомба)
+    }
+
+    async persist(gant) {
+        return this.manager.transaction(mng => {
+            for (const batch of gant.getChanges({ batch: 100 })) {
+                const queries = batch.map(makeSqlFromChange);
+                await mng.query(queries);
+            }
+        });
+    }
+    ...
+}
+```
+
+---
+
+# Оптимизация репозитория
+
+- Чтение выполняется напрямую из базы
+- Можно срезать углы и выполнить бизнес логику через `SQL`
+
+```javascript
+
+class GantRepository {
+    ...
+    // !!! Чтение без использования DDD !!!
+    async findList(filter) { ... } 
+    async findOne(id) { ... }
+
+    // Валидаторы см. DDD трилемма
+    async hasInDataRange(id) { ... }
+    async cloneToVersion(id, version) { ... }
+    ...
+}
+```
+
+---
+# Как написать агрегат?
+
+--- 
+
+# Инициализация и оптимизация в агрегате
 
 
 ```javascript
@@ -189,8 +326,7 @@ class Gant extends BaseAggregate {
 }
 ```
 ---
-
-# Как написать агрегат. Бизнес логика
+# Бизнес логика в агрегате
 
 
 ```javascript
@@ -222,7 +358,8 @@ class Gant extends BaseAggregate {
 ```
 
 ---
-# Как написать агрегат. Расчет смещения
+
+# Расчет смещения в агрегате
 
 
 ```javascript
@@ -240,7 +377,7 @@ class Gant extends BaseAggregate {
 }
 ```
 ---
-# Как написать агрегат. Регистрация изменений
+# Регистрация изменений в агрегате
 
 
 ```javascript
@@ -264,7 +401,7 @@ class BaseAggregate {
 ```
 
 ---
-# Как написать агрегат. Получение изменений
+# Получение изменений агрегата
 
 
 ```javascript
@@ -285,121 +422,16 @@ class BaseAggregate {
 ```
 
 ---
-# Как написать репозиторий
-
-```javascript
-
-class GantRepository {
-    ...
-    async restore(plan_id) {
-        const items = await this.findItemsByPlanId(plan_id);
-        const deps = await this.findDepsByPlanId(plan_id);
-        return new Gant(items, deps);
-    }
-
-    async persist(gant) {
-        return this.manager.transaction(mng => {
-            for (const batch of gant.getChanges({ batch: 100 })) {
-                const queries = batch.map(makeSqlFromChange);
-                await mng.query(queries);
-            }
-        });
-    }
-    ...
-}
-```
-
----
-
-# Как написать репозиторий
-
-- Чтение выполняется напрямую из базы
-- Можно срезать углы и выполнить бизнес логику через `SQL`
-
-```javascript
-
-class GantRepository {
-    ...
-    async findList(filter) { ... }
-    async findOne(id) { ... }
-    async hasInDataRange(id) { ... }
-    async cloneToVersion(id, version) { ... }
-    ...
-}
-```
-
----
-# Пример **Unit** теста. Тест кейс
-
-![width:700](images/unit_test.png)
-
----
-# Пример **Unit** теста. Реализация
-
-```javascript
-describe('GantItem.calcPosition() несколько связей', () => {
-  it('Для i3 берем окончание от i1, так как она дает "худшее" время', async () => {
-    // Восстанавливаем состояние
-    const i1 = ensureItem({ id: 'i1', start_time: 0, end_time: 5});
-    const i2 = ensureItem({ id: 'i2', start_time: 0, end_time: 2});
-    const i3 = ensureItem({ id: 'i3', start_time: 0, end_time: 5});
-    i1.setDeps(i3, EDependencyType.FS);
-    i2.setDeps(i3, EDependencyType.FS);
-
-    // Выполняем целевое действие 
-    i3.calcPosition();
-
-    // Проверяем результат
-    const change = i3.getChange();
-    expect(change.action).toEqual('update');
-    expect(change.params).toEqual({ start_time: 5, end_time: 10 });
-  });
-});
-```
-
----
-
-# Пример **Unit** теста. Функция `ensureItem`
-
-```javascript
-export const ensureItem = (data: Partial<EnsureItemOptions>): GantItem {
-  const defaultParams = {
-    id: data.id ?? guId(),
-    parent_id: undefined,
-    start_time: new Date(),
-    end_time: new Date(),
-    type: EItemType.COMMON,
-  };
-  const params = {
-    ...defaultParams
-    ...data, 
-  };
-
-  return new GantItem(params);
-};
-```
-
----
-
-# Плюсы для тестирования
-
-![Пирамида тестов](./images/piramid_of_tests.jpeg)
-
-- ? Минус - нужно править много тестов вместе с кодом
-
-
----
-
-# Плюсы в разработке
-- Возможность решать более сложные задачи
-- UseCase-ы читаются как текст
-- Параллельная разработка. Режим трех вкладок
-- Фреймворк и БД подождут
-- Контроль транзакций
-- EventBased архитектура
----
 
 # Минусы и оптимизации
+---
+
+# DDD трилемма
+
+![width:800](images/ddd_trilema.png)
+> Взято из доклада Владимира Хорикова "Domain-driven design: Самое важное"
+- CAP теорема - аналог, только для баз данных
+
 ---
 
 # Минус 1. Избыточное использование памяти
@@ -504,3 +536,4 @@ await repoGant.persist(gant);
 
 ---
 # Вопросы?
+
