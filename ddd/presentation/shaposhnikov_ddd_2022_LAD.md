@@ -191,8 +191,6 @@ export const ensureItem = (data: Partial<EnsureItemOptions>): GantItem {
 
 ---
 
----
-
 # Стратегическое проектирование (управление проектом)
 
 - Разделение на ограниченные контексты
