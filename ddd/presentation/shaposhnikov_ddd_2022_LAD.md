@@ -92,7 +92,7 @@ Domain - предметная область
 # Сервис для описанного сценария *
 
 ```javascript
-export const changePositionGantItem = async (params, { repoTask, repoGant, repoPPR }) => {
+export const changePositionGantItem = async (params, { repoPlanItem, repoGant, repoPPR }) => {
     const item = await repoPlanItem.restoreOrFail(params.plan_item_id);
     item.update(params);
     

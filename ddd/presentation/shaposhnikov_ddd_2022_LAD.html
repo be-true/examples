@@ -103,7 +103,7 @@ Domain - предметная область</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-paginate="true" data-marpit-pagination="10" data-marpit-pagination-total="39" style="--paginate:true;">
 <h1>Сервис для описанного сценария *</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">changePositionGantItem</span> = <span class="hljs-keyword">async</span> (<span class="hljs-params">params, { repoTask, repoGant, repoPPR }</span>) =&gt; {
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">changePositionGantItem</span> = <span class="hljs-keyword">async</span> (<span class="hljs-params">params, { repoPlanItem, repoGant, repoPPR }</span>) =&gt; {
     <span class="hljs-keyword">const</span> item = <span class="hljs-keyword">await</span> repoPlanItem.<span class="hljs-title function_">restoreOrFail</span>(params.<span class="hljs-property">plan_item_id</span>);
     item.<span class="hljs-title function_">update</span>(params);
     
