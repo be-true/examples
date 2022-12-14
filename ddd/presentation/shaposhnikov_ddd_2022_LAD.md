@@ -116,7 +116,7 @@ export const changePositionGantItem = async (params, { repoPlanItem, repoGant, r
 
 ---
 
- # Что это нам дало
+ # Что это нам даст?
 
 - UseCase-ы читаются как текст
 - Параллельная разработка. 
